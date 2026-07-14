@@ -18,8 +18,9 @@
     .sec-title{font-weight:700;font-size:15px;margin:2px 0 14px;padding-left:10px;border-left:4px solid var(--red)}
     label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}
     label .req{color:var(--red)}
-    input[type=text],input[type=email],input[type=tel]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff}
-    input:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(227,6,19,.12)}
+    input[type=text],input[type=email],input[type=tel],select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff;appearance:none;-webkit-appearance:none}
+    select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
+    input:focus,select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(227,6,19,.12)}
     .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px}
     .check input{margin-top:3px;width:18px;height:18px;accent-color:var(--red)}
     .check span{font-size:14px}
@@ -59,7 +60,22 @@
     <div class="card">
       <div class="sec-title">Podaci za certifikat</div>
       <label>Sudjelovao sam na seminaru <span class="req">*</span></label>
-      <input type="text" id="seminar" placeholder="npr. servis plinskih kondenzacijskih kotlova"/>
+      <select id="seminar">
+        <option value="">-- Odaberite seminar --</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Viessmann plinskih kondenzacijskih uređaja snage do 150 kW</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Viessmann plinskih kondenzacijskih kotlova srednje i velike snage (iznad 150 kW)</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Viessmann dizalica topline snage do 20 kW</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Carrier dizalica topline snage do 20 kW</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Viessmann dizalica topline srednje i velike snage (iznad 20 kW)</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Carrier dizalica topline srednje i velike snage (iznad 20 kW)</option>
+        <option>Servis, puštanje u pogon i godišnji servisni pregledi Viessmann solarnog sustava</option>
+      </select>
+      <label>Je li ovo Vaše prvo sudjelovanje na ovom seminaru? <span class="req">*</span></label>
+      <select id="prvi_put">
+        <option value="">-- Odaberite --</option>
+        <option value="DA">Da</option>
+        <option value="NE">Ne</option>
+      </select>
       <div class="check">
         <input type="checkbox" id="pristanak"/>
         <span>Prihvaćam da se moji podaci koriste za izradu certifikata.</span>
@@ -82,7 +98,7 @@
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzphyXKgiSI2PRi3fcIGgAi5ApyyTbM79ydtji5zD5aLTrTDbrjkTwWbOvoqEB9aG3R/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8DzzXfbbfop3x4JG2NiOZ48qx7gJmB6c_ph39oDh3P2aRf65xr5qtgnVLyKQne9T9/exec";
 const IZDAO          = "Marin Antunovic";
 const POTPISNIK      = "Bacc.ing.techn. Stjepan Mikleusevic";
 const SKOLOVANJE     = "Skolovanje za servis Vitodens, Vitocrossal, Vitomax, Vitorondens, Vitoplex";
@@ -171,7 +187,8 @@ $("f").addEventListener("submit", async e => {
   const ime=val("ime"),prezime=val("prezime"),email=val("email"),seminar=val("seminar");
   const telefon=val("telefon"),naziv=val("naziv_tvrtke"),oib=val("oib");
   const adresa=val("adresa"),grad=val("grad"),postanski=val("postanski_broj");
-  if(!ime||!prezime||!email||!telefon||!naziv||!oib||!adresa||!grad||!postanski||!seminar)
+  const prvi_put=$("prvi_put").value;
+  if(!ime||!prezime||!email||!telefon||!naziv||!oib||!adresa||!grad||!postanski||!seminar||!prvi_put)
     return showErr("Sva polja su obavezna.");
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
     return showErr("E-mail nije u ispravnom formatu (primjer: ime@domena.hr).");
@@ -194,6 +211,7 @@ $("f").addEventListener("submit", async e => {
     postanski_broj:val("postanski_broj"),
     seminar,
     pristanak:$("pristanak").checked?"DA":"NE",
+    prvi_put,
     datum,
     created_at:new Date().toISOString(),
   };
