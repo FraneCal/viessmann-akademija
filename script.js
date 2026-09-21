@@ -1,7 +1,7 @@
 // Upitnik - Viessmann Akademija: logika forme, validacija i slanje.
 // Base64 assets (TOOLS_B64, SIGN_B64, FONT_B64, FONT_BOLD_B64) su u assets.js,
 // koji se ucitava PRIJE ove datoteke.
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgN1ierOm5_Eumf4Pn7eeec5CdrU9mzz8I-GPCS_izCBcOrd715zQDgmvEEBKCQ-I/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6HbueSHeHTzj88Q-uFOQONL0_V8-feoyWjpkmFNHVpBZle5mkSmWHYtJ9LrTI8p0E/exec";
 const IZDAO          = "Marin Antunovic";
 const POTPISNIK      = "Bacc.ing.techn. Stjepan Mikleusevic";
 const SKOLOVANJE     = "Skolovanje za servis Vitodens, Vitocrossal, Vitomax, Vitorondens, Vitoplex";
