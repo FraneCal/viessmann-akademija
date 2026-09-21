@@ -1,0 +1,47 @@
+/* Upitnik - Viessmann Akademija: stilovi */
+:root{--red:#E30613;--ink:#1c1c1c;--muted:#6b7280;--line:#e5e7eb;--bg:#f4f5f7;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+header{background:#fff;border-bottom:3px solid var(--red);padding:18px 20px}
+.brand{font-weight:800;letter-spacing:2px;color:var(--red);font-size:22px}
+.wrap{max-width:640px;margin:0 auto;padding:20px}
+h1{font-size:20px;margin:14px 2px 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 2px 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.sec-title{font-weight:700;font-size:15px;margin:2px 0 14px;padding-left:10px;border-left:4px solid var(--red)}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}
+label .req{color:var(--red)}
+input[type=text],input[type=email],input[type=tel],select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff;appearance:none;-webkit-appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
+input:focus,select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(227,6,19,.12)}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:14px}
+.check input{margin-top:3px;width:18px;height:18px;accent-color:var(--red)}
+.check span{font-size:14px}
+button{width:100%;padding:14px;border:0;border-radius:10px;background:var(--red);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
+button:disabled{opacity:.6;cursor:default}
+.err{background:#fde8e8;color:#9b1c1c;padding:12px;border-radius:8px;font-size:14px;margin-top:12px;display:none}
+.done{text-align:center;padding:26px 10px;display:none}
+.tick{width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;font-size:30px;line-height:56px;margin:0 auto 14px}
+.hint{font-size:12px;color:var(--muted);margin-top:6px}
+.fmsg{font-size:12.5px;margin-top:6px;display:none;font-weight:600}
+.fmsg.ok{color:#047857;display:block}
+.fmsg.bad{color:#9b1c1c;display:block}
+.fmsg.neutral{color:var(--muted);display:block;font-weight:400}
+input.ok{border-color:#047857}
+input.ok:focus{box-shadow:0 0 0 3px rgba(4,120,87,.12)}
+input.bad{border-color:var(--red)}
+.foot{color:var(--muted);font-size:12px;text-align:center;margin:8px 0 30px}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* --- odabir seminara (vise odjednom) --- */
+.sem{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+.sem.on{border-color:var(--red);background:#fff7f7}
+.sem-row{display:flex;gap:10px;align-items:flex-start;margin:0;cursor:pointer}
+.sem-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--red);flex:0 0 auto}
+.sem-row span{font-size:14px;color:var(--ink);line-height:1.35}
+.sem-pp{margin:10px 0 2px 28px;font-size:13px;color:var(--muted)}
+.sem-pp.hide{display:none}
+.sem-pp .opt{display:inline-flex;align-items:center;gap:6px;margin-right:16px;margin-top:6px;cursor:pointer}
+.sem-pp input{width:16px;height:16px;accent-color:var(--red)}
+.sem-count{font-size:12.5px;color:var(--muted);margin-top:10px}

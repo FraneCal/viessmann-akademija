@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex"/>
+  <title>Upitnik - Viessmann Akademija</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header><span class="brand">VIESSMANN</span></header>
+<div class="wrap">
+  <h1>Upitnik za polaznike stručnih seminara Viessmann Akademije</h1>
+  <br>
+	
+  <form id="f" novalidate>
+    <div class="card">
+      <div class="sec-title">Osobni podaci</div>
+      <label>Ime <span class="req">*</span></label><input type="text" id="ime" autocomplete="given-name"/>
+      <label>Prezime <span class="req">*</span></label><input type="text" id="prezime" autocomplete="family-name"/>
+      <label>E-mail <span class="req">*</span></label><input type="email" id="email" autocomplete="email"/>
+      <label>Telefon <span class="req">*</span></label><input type="tel" id="telefon" autocomplete="tel"/>
+    </div>
+    <div class="card">
+      <div class="sec-title">Podaci o tvrtki</div>
+      <label>Naziv tvrtke <span class="req">*</span></label><input type="text" id="naziv_tvrtke"/>
+      <label>OIB <span class="req">*</span></label><input type="text" id="oib" inputmode="numeric" pattern="[0-9]*" maxlength="11" autocomplete="off"/><div class="fmsg" id="oibMsg"></div>
+      <label>Adresa <span class="req">*</span></label><input type="text" id="adresa"/>
+      <label>Grad <span class="req">*</span></label><input type="text" id="grad"/>
+      <label>Poštanski broj <span class="req">*</span></label><input type="text" id="postanski_broj" inputmode="numeric" pattern="[0-9]*" maxlength="5" autocomplete="postal-code"/>
+    </div>
+    <div class="card">
+      <div class="sec-title">Podaci za certifikat</div>
+      <label>Sudjelovao sam na seminarima <span class="req">*</span></label>
+      <div id="seminari"></div>
+      <p class="hint">Možete odabrati više seminara. Za svaki se izdaje zasebna potvrda,
+         a anketu šaljemo samo jednom.</p>
+
+      <div class="check">
+        <input type="checkbox" id="pristanak"/>
+        <span>Prihvaćam da se moji podaci koriste za izradu certifikata.</span>
+      </div>
+      <p class="hint">Potvrda se izdaje samo uz ovaj pristanak.</p>
+
+    </div>
+    <button type="submit" id="btn">Pošalji</button>
+    <div class="err" id="err"></div>
+  </form>
+
+  <div class="card done" id="done">
+    <div class="tick">&#10003;</div>
+    <h1 style="text-align:center">Hvala!</h1>
+    <p class="sub" style="text-align:center" id="doneMsg">Zaprimili smo Vaše podatke.</p>
+  </div>
+  <p class="foot">Viessmann Climate Solutions</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
+<script src="assets.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
